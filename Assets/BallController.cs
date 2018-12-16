@@ -12,21 +12,28 @@ public class BallController : MonoBehaviour {
 	private GameObject gameoverText;
 	private GameObject Ten;
 	private int num=0;
+	private int nums = 0;
 	Material myMaterial;
 
 	// Use this for initialization
 	void Start () {
 		//シーン中のGameOverTextオブジェクトを取得
 		this.gameoverText = GameObject.Find("GameOverText");
-		this.Ten = GameObject.Find ("ten");
-		this.Ten.GetComponent<Text> ().text = num.ToString();
+		this.Ten = GameObject.Find ("Tokuten");
 		this.myMaterial=GetComponent<Renderer>().material;
+		this.Ten.GetComponent<Text> ().text = num.ToString ();
 	}
 
 	// Update is called once per frame
 	void Update () {
+		
 		//ボールが画面外に出た場合
-		this.Ten.GetComponent<Text> ().text = num.ToString();
+		//if (num != nums) {
+		//	this.Ten.GetComponent<Text> ().text = num.ToString ();
+		//	nums = num;
+		//} else if (num == nums) {
+		//	this.Ten.GetComponent<Text> ().text = " ";
+		//}
 
 		if (this.transform.position.z < this.visiblePosZ) {
 			//GameoverTextにゲームオーバを表示
@@ -44,6 +51,7 @@ public class BallController : MonoBehaviour {
 		} else if (other.gameObject.tag == "LargeCloudTag") {
 			num += 5;
 		}
+		this.Ten.GetComponent<Text> ().text = num.ToString ();
 	}
 
 }
