@@ -40,16 +40,17 @@ public class FripperController : MonoBehaviour {
 			SetAngle (this.defaultAngle);
 		}
 
-		if (Input.touchCount > 0) {
-			Touch touch = Input.GetTouch (0);
-			//右半分をtapした時
-			if (touch.position.x > Screen.width * 0.5f) {
+		if (Input.GetMouseButtonDown(0)) {
+			
+			if (Input.mousePosition.x> Screen.width * 0.5f&& tag == "RightFripperTag") {
 				SetAngle (this.flickAngle);
-			} else if (touch.position.x < Screen.width * 0.5f) {
+			} 
+			if (Input.mousePosition.x< Screen.width * 0.5f&& tag == "LeftFripperTag") {
 				SetAngle (this.flickAngle);
 			}
-		} else if (Input.touchCount < 0) {
-			SetAngle (this.flickAngle);
+		} else if (Input.GetMouseButtonUp(0)) {
+			
+			SetAngle (this.defaultAngle);
 		}
 
 	}
